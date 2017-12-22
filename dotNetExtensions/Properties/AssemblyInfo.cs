@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("tekmunkey")]
 [assembly: AssemblyProduct("dotNetExtensions")]
-[assembly: AssemblyCopyright("Copyright tekmunkey © tekmunkey.com 2017")]
+[assembly: AssemblyCopyright("Copyright Tek Mun Key © tekmunkey.com 2017")]
 [assembly: AssemblyTrademark("tekmunkey")]
 [assembly: AssemblyCulture("")]
 
