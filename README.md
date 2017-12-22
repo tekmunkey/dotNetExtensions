@@ -12,6 +12,14 @@ What's important for consumers to understand about this particular project is th
 
 So if you download one of those projects that references this one, and you download this one and get a reference to it and things seem out of whack, **__please let me know as soon as possible__** so I can post a repo update of the dotNetExtensions Project.  I'm only human and stuff like this can in fact slip my addled, medication side-effected mind.
 
+@@     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do      @@
+@@   eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim    @@
+@@   ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut     @@
+@@        aliquip ex ea commodo consequat. Duis aute irure dolor in         @@
+@@   reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla    @@
+@@    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in     @@
+@@          culpa qui officia deserunt mollit anim id est laborum.          @@
+
 ## stringExtensions
 
 As of this writing, only contains a high-performance text wrapping function but one that actually works - unlike literally every other one I've seen.  This one will actually respect user pre-formatting such as linebreaks you put in before you called the wrapping function in the first place, and a whole lot more.
