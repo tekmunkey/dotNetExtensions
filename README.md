@@ -60,29 +60,29 @@ dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, boxBorder);
 ```
 
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br />
-@@                          @@<br />
-@@  Lorem ipsum dolor sit   @@<br />
-@@    amet, consectetur     @@<br />
-@@ adipiscing elit, sed do  @@<br />
-@@     eiusmod tempor       @@<br />
-@@ incididunt ut labore et  @@<br />
-@@ dolore magna aliqua. Ut  @@<br />
-@@  enim ad minim veniam,   @@<br />
-@@      quis nostrud        @@<br />
-@@  exercitation ullamco    @@<br />
-@@ laboris nisi ut aliquip  @@<br />
-@@      ex ea commodo       @@<br />
-@@  consequat. Duis aute    @@<br />
-@@     irure dolor in       @@<br />
-@@    reprehenderit in      @@<br />
-@@  voluptate velit esse    @@<br />
-@@ cillum dolore eu fugiat  @@<br />
-@@     nulla pariatur.      @@<br />
-@@ Excepteur sint occaecat  @@<br />
-@@ cupidatat non proident,  @@<br />
-@@    sunt in culpa qui     @@<br />
-@@ officia deserunt mollit  @@<br />
-@@   anim id est laborum.   @@<br />
-@@                          @@<br />
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br />
+`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`<br />
+`@@                          @@`<br />
+`@@  Lorem ipsum dolor sit   @@`<br />
+`@@    amet, consectetur     @@`<br />
+`@@ adipiscing elit, sed do  @@`<br />
+`@@     eiusmod tempor       @@`<br />
+`@@ incididunt ut labore et  @@`<br />
+`@@ dolore magna aliqua. Ut  @@`<br />
+`@@  enim ad minim veniam,   @@`<br />
+`@@      quis nostrud        @@`<br />
+`@@  exercitation ullamco    @@`<br />
+`@@ laboris nisi ut aliquip  @@`<br />
+`@@      ex ea commodo       @@`<br />
+`@@  consequat. Duis aute    @@`<br />
+`@@     irure dolor in       @@`<br />
+`@@    reprehenderit in      @@`<br />
+`@@  voluptate velit esse    @@`<br />
+`@@ cillum dolore eu fugiat  @@`<br />
+`@@     nulla pariatur.      @@`<br />
+`@@ Excepteur sint occaecat  @@`<br />
+`@@ cupidatat non proident,  @@`<br />
+`@@    sunt in culpa qui     @@`<br />
+`@@ officia deserunt mollit  @@`<br />
+`@@   anim id est laborum.   @@`<br />
+`@@                          @@`<br />
+`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`<br />
