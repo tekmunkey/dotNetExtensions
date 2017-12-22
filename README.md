@@ -27,39 +27,40 @@ As of this writing, only contains a high-performance text wrapping function but 
 + When you choose to wrap strictly, you can choose to apply your padding on on the right side (left-justifying your text), on the left side (right-justifying your text), or on both sides (centering your text) of each wrapped line.  Padding is inserted between line decorations.
 
 ```c#
-            // A snazzy boxBorder at 78 columns total, filled with # characters
-            string boxBorder = dotNetExtensions.stringExtensions.getPaddedLine(string.Empty, 78, true, @"#", 0);
-            // A wrappable Lorem Ipsum - notice that blank lines are given full line-width padding and are boxed themselves with line deco on the left and right sides
-            string mystring = "\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n";
-            // A demo array so we can kill 2 birds with 1 stone
-            string[] boxStrings = new string[0];
-            // Demonstrating arrayExtensions.push to shove a snazzy box-top border in
-            dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, boxBorder);
-            // Converting our wrappable string into boxed lines at 78 columns each
-            foreach (string s in dotNetExtensions.stringExtensions.getWrappedLines(mystring, 78, @"##  ", @"  ##", null, true, @" ", 0))
-            {
-                // pushing in each wrap-boxed Lorem Ipsum line
-                dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, s);
-            }
-            // And finishing off by pushing in a box-bottom border
-            dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, boxBorder);
-            //
-            // Of course you can also leave off the line decos and pass the forceWidth parameter a false, and then you just get standard wrapping
-            //
+// A snazzy boxBorder at 78 columns total, filled with # characters
+string boxBorder = dotNetExtensions.stringExtensions.getPaddedLine(string.Empty, 78, true, @"@", 0);
+// A wrappable Lorem Ipsum - notice that blank lines are given full line-width padding and are boxed themselves with line deco on the left and right sides
+string mystring = "\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\r\n";
+// A demo array so we can kill 2 birds with 1 stone
+string[] boxStrings = new string[0];
+// Demonstrating arrayExtensions.push to shove a snazzy box-top border in
+dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, boxBorder);
+// Converting our wrappable string into boxed lines at 78 columns each
+foreach (string s in dotNetExtensions.stringExtensions.getWrappedLines(mystring, 78, @"@@  ", @"  @@", null, true, @" ", 0))
+{
+    // pushing in each wrap-boxed Lorem Ipsum line
+    dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, s);
+}
+// And finishing off by pushing in a box-bottom border
+dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, boxBorder);
+//
+// Of course you can also leave off the line decos and pass the forceWidth parameter a false, and then you just get standard wrapping where each line breaks 
+// on an appropriate character (such as space, dash, or underscore), and no padding occurs.
+//
 ```
 
 
-`##############################################################################`
-`##                                                                          ##`
-`##     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do      ##`
-`##   eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim    ##`
-`##   ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut     ##`
-`##        aliquip ex ea commodo consequat. Duis aute irure dolor in         ##`
-`##   reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla    ##`
-`##    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in     ##`
-`##          culpa qui officia deserunt mollit anim id est laborum.          ##`
-`##                                                                          ##`
-`##############################################################################`
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@                                                                          @@
+@@     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do      @@
+@@   eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim    @@
+@@   ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut     @@
+@@        aliquip ex ea commodo consequat. Duis aute irure dolor in         @@
+@@   reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla    @@
+@@    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in     @@
+@@          culpa qui officia deserunt mollit anim id est laborum.          @@
+@@                                                                          @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
 ## bitconverterExtensions
