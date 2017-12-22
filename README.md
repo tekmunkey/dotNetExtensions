@@ -12,6 +12,16 @@ What's important for consumers to understand about this particular project is th
 
 So if you download one of those projects that references this one, and you download this one and get a reference to it and things seem out of whack, **__please let me know as soon as possible__** so I can post a repo update of the dotNetExtensions Project.  I'm only human and stuff like this can in fact slip my addled, medication side-effected mind.
 
+## bitconverterExtensions
+
+All the GetBytes() functions (for short, int, and long values) and then back ToIntXX() functions but with Network Byte Order in mind.
+
+## arrayExtensions
+
+As of this writing, only contains array.push and array.pop which work about how you'd expect them to, if you know what push and pop functions are.  Push adds an object of any given type to the end of an array, automagically resizing the array on your behalf, while pop removes (and returns) an object of any given type from the end of an array, again resizing it for you.  
+
+These utility functions are mostly intended to make handling arrays a bit handier, since they're preferable to Lists and other members of the Collections and subordinate namespace(s) and they're all over in DotNET builtin collections like TextBox.Lines etc, but they're a bit of a bear to work with.
+
 ## stringExtensions
 
 As of this writing, only contains a high-performance text wrapping function but one that actually works - unlike literally every other one I've seen.  This one will actually respect user pre-formatting such as linebreaks you put in before you called the wrapping function in the first place, and a whole lot more.
@@ -50,23 +60,14 @@ dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, boxBorder);
 ```
 
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@@                                                                          @@
-@@     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do      @@
-@@   eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim    @@
-@@   ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut     @@
-@@        aliquip ex ea commodo consequat. Duis aute irure dolor in         @@
-@@   reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla    @@
-@@    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in     @@
-@@          culpa qui officia deserunt mollit anim id est laborum.          @@
-@@                                                                          @@
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
-## bitconverterExtensions
-
-All the GetBytes() functions (for short, int, and long values) and then back ToIntXX() functions but with Network Byte Order in mind.
-
-## arrayExtensions
-
-As of this writing, only contains array.push and array.pop which work about how you'd expect them to, if you know what push and pop functions are.  Push adds an object of any given type to the end of an array, automagically resizing the array on your behalf, while pop removes (and returns) an object of any given type from the end of an array, again resizing it for you.  These utility functions are mostly intended to make handling arrays a bit handier, since they're preferable to Lists and other members of the Collections and subordinate namespace(s) and they're all over in DotNET builtin collections like TextBox.Lines etc, but they're a bit of a bear to work with.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br />
+@@                                                                          @@<br />
+@@     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do      @@<br />
+@@   eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim    @@<br />
+@@   ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut     @@<br />
+@@        aliquip ex ea commodo consequat. Duis aute irure dolor in         @@<br />
+@@   reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla    @@<br />
+@@    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in     @@<br />
+@@          culpa qui officia deserunt mollit anim id est laborum.          @@<br />
+@@                                                                          @@<br />
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br />
