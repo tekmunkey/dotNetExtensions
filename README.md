@@ -59,30 +59,31 @@ dotNetExtensions.arrayExtensions.push<string>(ref boxStrings, boxBorder);
 //
 ```
 
-
-`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`<br />
-`@@                          @@`<br />
-`@@  Lorem ipsum dolor sit   @@`<br />
-`@@    amet, consectetur     @@`<br />
-`@@ adipiscing elit, sed do  @@`<br />
-`@@     eiusmod tempor       @@`<br />
-`@@ incididunt ut labore et  @@`<br />
-`@@ dolore magna aliqua. Ut  @@`<br />
-`@@  enim ad minim veniam,   @@`<br />
-`@@      quis nostrud        @@`<br />
-`@@  exercitation ullamco    @@`<br />
-`@@ laboris nisi ut aliquip  @@`<br />
-`@@      ex ea commodo       @@`<br />
-`@@  consequat. Duis aute    @@`<br />
-`@@     irure dolor in       @@`<br />
-`@@    reprehenderit in      @@`<br />
-`@@  voluptate velit esse    @@`<br />
-`@@ cillum dolore eu fugiat  @@`<br />
-`@@     nulla pariatur.      @@`<br />
-`@@ Excepteur sint occaecat  @@`<br />
-`@@ cupidatat non proident,  @@`<br />
-`@@    sunt in culpa qui     @@`<br />
-`@@ officia deserunt mollit  @@`<br />
-`@@   anim id est laborum.   @@`<br />
-`@@                          @@`<br />
-`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@`<br />
+```
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@                          @@
+@@  Lorem ipsum dolor sit   @@
+@@    amet, consectetur     @@
+@@ adipiscing elit, sed do  @@
+@@     eiusmod tempor       @@
+@@ incididunt ut labore et  @@
+@@ dolore magna aliqua. Ut  @@
+@@  enim ad minim veniam,   @@
+@@      quis nostrud        @@
+@@  exercitation ullamco    @@
+@@ laboris nisi ut aliquip  @@
+@@      ex ea commodo       @@
+@@  consequat. Duis aute    @@
+@@     irure dolor in       @@
+@@    reprehenderit in      @@
+@@  voluptate velit esse    @@
+@@ cillum dolore eu fugiat  @@
+@@     nulla pariatur.      @@
+@@ Excepteur sint occaecat  @@
+@@ cupidatat non proident,  @@
+@@    sunt in culpa qui     @@
+@@ officia deserunt mollit  @@
+@@   anim id est laborum.   @@
+@@                          @@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+```
