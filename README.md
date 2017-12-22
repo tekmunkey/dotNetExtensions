@@ -50,7 +50,6 @@ As of this writing, only contains a high-performance text wrapping function but 
 
 
 `##############################################################################`
-
 `##                                                                          ##`
 `##     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do      ##`
 `##   eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim    ##`
