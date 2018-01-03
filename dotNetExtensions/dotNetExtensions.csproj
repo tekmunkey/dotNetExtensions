@@ -40,12 +40,14 @@
     <Compile Include="bitwise\bitwise.cs" />
     <Compile Include="bitwise\bitwise.getBytes.cs" />
     <Compile Include="bitwise\bitwise.toInt.cs" />
-    <Compile Include="iniFile\iniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stringExtensions\stringExtensions.cs" />
     <Compile Include="stringExtensions\stringExtensions.stringProperties.cs" />
     <Compile Include="stringExtensions\stringExtensions.textTrim.cs" />
     <Compile Include="stringExtensions\stringExtensions.textWrap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="iniFile\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

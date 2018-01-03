@@ -6,7 +6,7 @@
 
 * Changed up 'bitconverterExtensions' to 'bitwise' since BitConverter really ought to provide the features and functions I've written in, but BitConverter's a really stupid name.  Nothing's actually being converted.
 
-* Added arrayExtensions.removeAt
+* Added arrayExtensions.insertAt and arrayExtensions.removeAt
 
 * Added stringExtensions.copyStringToString and copyStringToCharArray
 

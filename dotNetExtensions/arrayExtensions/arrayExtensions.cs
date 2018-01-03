@@ -17,22 +17,19 @@ namespace dotNetExtensions
         /// An array variable reference.
         /// </param>
         /// <param name="obj">
-        /// An object variable reference to append to the end of the array.
+        /// An object variable instance to append to the end of the array.
         /// </param>
         public static void push<T>(ref T[] array, T obj)
         {
-            if (obj != null)
+            if (array != null)
             {
-                if (array != null)
-                {
-                    Array.Resize<T>(ref array, array.Length + 1);
-                }
-                else
-                {
-                    array = new T[1];
-                }
-                array[array.Length - 1] = obj;
+                Array.Resize<T>(ref array, array.Length + 1);
             }
+            else
+            {
+                array = new T[1];
+            }
+            array[array.Length - 1] = obj;
         }
 
         /// <summary>
@@ -68,6 +65,81 @@ namespace dotNetExtensions
                 
             }
             return r;
+        }
+
+        /// <summary>
+        /// Allows inserting an element into a specified index into any array, with at-runtime dynamic array resizing.
+        /// </summary>
+        /// <typeparam name="T">
+        /// A Type.  Requires you to specify the object type of the array.
+        /// </typeparam>
+        /// <param name="array">
+        /// An array variable reference.
+        /// </param>
+        /// <param name="index">
+        /// An integer.  The index into the specified array where an item should be removed.
+        /// </param>
+        /// <param name="obj">
+        /// An object variable instance to insert into the array at the specified index.
+        /// </param>
+        public static void insertAt<T>(ref T[] array, int index, T obj)
+        {
+            if (object.ReferenceEquals(array, null))
+            {
+                // ensuring that the array is in fact an instance
+                array = new T[0];
+            }
+            //
+            // The newSize value will help determine the size of the array, based on the index specifier.  In this 
+            // fashion a programmer may insert an item far past the end of an array's upper boundary, to be filled 
+            // in later.
+            //
+            int newSize = 0;
+            if (index <= array.Length)
+            {
+                //
+                // if the specified index is less than or equal to the specified array length, we must expand the 
+                // array by just 1 item 
+                // 
+                newSize = array.Length + 1;
+            }
+            else if (index > array.Length)
+            {
+                //
+                // if the specified index is greater than the specified array length, we must expand the array by 
+                // enough items to fit the new one
+                //
+                newSize = index + 1;
+            }
+            // Although these are explicit if statements, there would never be any other/alternate case
+            //
+            // Finally perform the array resize operation
+            //
+            Array.Resize<T>(ref array, newSize);
+            //
+            // Testing if the specified index is less than the --old-- array size, not caring about 0-base indexing
+            //
+            if (index < (array.Length - 1))
+            {
+                //
+                // Index was less than the old array length, so we need to forward-fix the old array members, meaning 
+                // copy everything from the specified index value one element/index forward into the array
+                //   * In a normal array iteration we would go as long as index was < array.Length, but in this case 
+                //     we want to skip the last item, which we know is empty anyway, because that last item would throw 
+                //     an IndexOutOfBoundsException when we attempted to copy it +1 index forward (past the upper array 
+                //     boundary).
+                //
+                for (int i = index; i < (array.Length - 1); i++)
+                {
+                    array[i + 1] = array[i];
+                }
+            }
+            //
+            // There is no need for an else or else if here.
+            //   * If the specified index is equal to or greater than the old array length, then the index we will be 
+            //     setting into is already empty
+            //
+            array[index] = obj;
         }
 
         /// <summary>
