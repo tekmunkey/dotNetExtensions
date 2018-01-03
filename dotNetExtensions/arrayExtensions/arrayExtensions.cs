@@ -69,5 +69,37 @@ namespace dotNetExtensions
             }
             return r;
         }
+
+        /// <summary>
+        /// Allows removing an element from a specified index into any array, with at-runtime dynamic array resizing.
+        /// </summary>
+        /// <typeparam name="T">
+        /// A Type.  Requires you to specify the object type of the array.
+        /// </typeparam>
+        /// <param name="array">
+        /// An array variable reference.
+        /// </param>
+        /// <param name="index">
+        /// An integer.  The index into the specified array where an item should be removed.
+        /// </param>
+        public static void removeAt<T>(ref T[] array, int index)
+        {
+            if ((array != null) && (index < array.Length))
+            {
+                //
+                // the specified array is not null and the index fits inside its bounds, so we're good to go with modification
+                //
+                if ((index + 1) < array.Length)
+                {
+                    // there are elements following index, so copy them backwards into place
+                    for (int i = index + 1; i < array.Length; i++)
+                    {
+                        array[i - 1] = array[i];
+                    }
+                }
+                // No need for an else - if there are no elements to copy in, simply dump the last element off the end of the array
+                Array.Resize<T>(ref array, array.Length - 1);
+            }
+        }
     }
 }

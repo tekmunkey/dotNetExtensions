@@ -37,11 +37,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="arrayExtensions\arrayExtensions.cs" />
-    <Compile Include="bitconverterExtensions\bitconverterExtensions.cs" />
-    <Compile Include="bitconverterExtensions\bitconverterExtensions.getBytes.cs" />
-    <Compile Include="bitconverterExtensions\bitconverterExtensions.toInt.cs" />
+    <Compile Include="bitwise\bitwise.cs" />
+    <Compile Include="bitwise\bitwise.getBytes.cs" />
+    <Compile Include="bitwise\bitwise.toInt.cs" />
+    <Compile Include="iniFile\iniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="stringExtensions\stringExtensions.cs" />
+    <Compile Include="stringExtensions\stringExtensions.stringProperties.cs" />
+    <Compile Include="stringExtensions\stringExtensions.textTrim.cs" />
     <Compile Include="stringExtensions\stringExtensions.textWrap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

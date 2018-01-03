@@ -4,13 +4,13 @@ using System.Text;
 
 namespace dotNetExtensions
 {
-    public static partial class bitconverterExtensions
+    public static partial class bitwise
     {
         /// <summary>
         /// Returns the specified value as an array of bytes.  
         /// 
         /// ALWAYS RETURNS THE VALUE IN NETWORK BYTE ORDER (BIG-ENDIAN).  YOU MAY USE THIS FUNCTION ANY TIME YOU LIKE, BUT ONCE YOU PASS 
-        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitconverterExtensions.toInt() TO GET IT BACK INTO ANOTHER 
+        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitwise.toInt() TO GET IT BACK INTO ANOTHER 
         /// FORMAT, OR ELSE IT WON'T LOOK LIKE WHAT YOU EXPECT AT ALL.
         /// </summary>
         /// <param name="value">
@@ -32,7 +32,7 @@ namespace dotNetExtensions
         /// Returns the specified value as an array of bytes.  
         /// 
         /// ALWAYS RETURNS THE VALUE IN NETWORK BYTE ORDER (BIG-ENDIAN).  YOU MAY USE THIS FUNCTION ANY TIME YOU LIKE, BUT ONCE YOU PASS 
-        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitconverterExtensions.toInt() TO GET IT BACK INTO ANOTHER 
+        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitwise.toInt() TO GET IT BACK INTO ANOTHER 
         /// FORMAT, OR ELSE IT WON'T LOOK LIKE WHAT YOU EXPECT AT ALL.
         /// </summary>
         /// <param name="value">
@@ -54,7 +54,7 @@ namespace dotNetExtensions
         /// Returns the specified value as an array of bytes.  
         /// 
         /// ALWAYS RETURNS THE VALUE IN NETWORK BYTE ORDER (BIG-ENDIAN).  YOU MAY USE THIS FUNCTION ANY TIME YOU LIKE, BUT ONCE YOU PASS 
-        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitconverterExtensions.toInt() TO GET IT BACK INTO ANOTHER 
+        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitwise.toInt() TO GET IT BACK INTO ANOTHER 
         /// FORMAT, OR ELSE IT WON'T LOOK LIKE WHAT YOU EXPECT AT ALL.
         /// </summary>
         /// <param name="value">
@@ -76,7 +76,7 @@ namespace dotNetExtensions
         /// Returns the specified value as an array of bytes.  
         /// 
         /// ALWAYS RETURNS THE VALUE IN NETWORK BYTE ORDER (BIG-ENDIAN).  YOU MAY USE THIS FUNCTION ANY TIME YOU LIKE, BUT ONCE YOU PASS 
-        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitconverterExtensions.toInt() TO GET IT BACK INTO ANOTHER 
+        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitwise.toInt() TO GET IT BACK INTO ANOTHER 
         /// FORMAT, OR ELSE IT WON'T LOOK LIKE WHAT YOU EXPECT AT ALL.
         /// </summary>
         /// <param name="value">
@@ -98,7 +98,7 @@ namespace dotNetExtensions
         /// Returns the specified value as an array of bytes.  
         /// 
         /// ALWAYS RETURNS THE VALUE IN NETWORK BYTE ORDER (BIG-ENDIAN).  YOU MAY USE THIS FUNCTION ANY TIME YOU LIKE, BUT ONCE YOU PASS 
-        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitconverterExtensions.toInt() TO GET IT BACK INTO ANOTHER 
+        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitwise.toInt() TO GET IT BACK INTO ANOTHER 
         /// FORMAT, OR ELSE IT WON'T LOOK LIKE WHAT YOU EXPECT AT ALL.
         /// </summary>
         /// <param name="value">
@@ -120,7 +120,7 @@ namespace dotNetExtensions
         /// Returns the specified value as an array of bytes.  
         /// 
         /// ALWAYS RETURNS THE VALUE IN NETWORK BYTE ORDER (BIG-ENDIAN).  YOU MAY USE THIS FUNCTION ANY TIME YOU LIKE, BUT ONCE YOU PASS 
-        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitconverterExtensions.toInt() TO GET IT BACK INTO ANOTHER 
+        /// DATA THROUGH THIS FUNCTION YOU MUST --ALWAYS-- PASS IT BACK THROUGH bitwise.toInt() TO GET IT BACK INTO ANOTHER 
         /// FORMAT, OR ELSE IT WON'T LOOK LIKE WHAT YOU EXPECT AT ALL.
         /// </summary>
         /// <param name="value">

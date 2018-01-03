@@ -4,13 +4,13 @@ using System.Text;
 
 namespace dotNetExtensions
 {
-    public static partial class bitconverterExtensions
+    public static partial class bitwise
     {
         /// <summary>
         /// Returns a 16-bit signed integer converted from two bytes at a specified position in a byte array.  
         /// 
         /// ALWAYS CONVERTS THE VALUE FROM NETWORK BYTE ORDER (BIG-ENDIAN).  DO NOT PASS DATA THROUGH THIS FUNCTION UNLESS YOU --KNOW-- 
-        /// IT WAS CONSTRUCTED USING bitconverterExtensions.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
+        /// IT WAS CONSTRUCTED USING bitwise.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
         /// REASON.
         /// </summary>
         /// <param name="value">
@@ -39,7 +39,7 @@ namespace dotNetExtensions
         /// Returns a 16-bit unsigned integer converted from two bytes at a specified position in a byte array.  
         /// 
         /// ALWAYS CONVERTS THE VALUE FROM NETWORK BYTE ORDER (BIG-ENDIAN).  DO NOT PASS DATA THROUGH THIS FUNCTION UNLESS YOU --KNOW-- 
-        /// IT WAS CONSTRUCTED USING bitconverterExtensions.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
+        /// IT WAS CONSTRUCTED USING bitwise.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
         /// REASON.
         /// </summary>
         /// <param name="value">
@@ -68,7 +68,7 @@ namespace dotNetExtensions
         /// Returns a 32-bit signed integer converted from four bytes at a specified position in a byte array.  
         /// 
         /// ALWAYS CONVERTS THE VALUE FROM NETWORK BYTE ORDER (BIG-ENDIAN).  DO NOT PASS DATA THROUGH THIS FUNCTION UNLESS YOU --KNOW-- 
-        /// IT WAS CONSTRUCTED USING bitconverterExtensions.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
+        /// IT WAS CONSTRUCTED USING bitwise.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
         /// REASON.
         /// </summary>
         /// <param name="value">
@@ -97,7 +97,7 @@ namespace dotNetExtensions
         /// Returns a 32-bit unsigned integer converted from four bytes at a specified position in a byte array.  
         /// 
         /// ALWAYS CONVERTS THE VALUE FROM NETWORK BYTE ORDER (BIG-ENDIAN).  DO NOT PASS DATA THROUGH THIS FUNCTION UNLESS YOU --KNOW-- 
-        /// IT WAS CONSTRUCTED USING bitconverterExtensions.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
+        /// IT WAS CONSTRUCTED USING bitwise.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
         /// REASON.
         /// </summary>
         /// <param name="value">
@@ -126,7 +126,7 @@ namespace dotNetExtensions
         /// Returns a 64-bit signed integer converted from eight bytes at a specified position in a byte array.  
         /// 
         /// ALWAYS CONVERTS THE VALUE FROM NETWORK BYTE ORDER (BIG-ENDIAN).  DO NOT PASS DATA THROUGH THIS FUNCTION UNLESS YOU --KNOW-- 
-        /// IT WAS CONSTRUCTED USING bitconverterExtensions.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
+        /// IT WAS CONSTRUCTED USING bitwise.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
         /// REASON.
         /// </summary>
         /// <param name="value">
@@ -155,7 +155,7 @@ namespace dotNetExtensions
         /// Returns a 64-bit unsigned integer converted from eight bytes at a specified position in a byte array.  
         /// 
         /// ALWAYS CONVERTS THE VALUE FROM NETWORK BYTE ORDER (BIG-ENDIAN).  DO NOT PASS DATA THROUGH THIS FUNCTION UNLESS YOU --KNOW-- 
-        /// IT WAS CONSTRUCTED USING bitconverterExtensions.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
+        /// IT WAS CONSTRUCTED USING bitwise.getBytes() OR UNLESS YOU --KNOW-- IT IS IN BIG-ENDIAN FORMAT FOR SOME OTHER 
         /// REASON.
         /// </summary>
         /// <param name="value">
