@@ -173,5 +173,81 @@ namespace dotNetExtensions
                 Array.Resize<T>(ref array, array.Length - 1);
             }
         }
+
+        /// <summary>
+        /// Allows testing the array to determine if it contains a specified object.
+        /// </summary>
+        /// <typeparam name="T">
+        /// A Type.  Requires you to specify the object type of the array.
+        /// </typeparam>
+        /// <param name="array">
+        /// An array variable reference.
+        /// </param>
+        /// <param name="obj">
+        /// An object variable instance to test into the array for element existence and position.
+        /// </param>
+        /// <param name="referenceEqualityOnly">
+        /// A boolean value.  If True, then indexOf will test only for reference equality.  If False, then indexOf will test for either reference or value equality.
+        /// </param>
+        /// <returns>
+        /// An integer value indicating the specified object's index into the specified array.  -1 if the object does not exist in the array.
+        /// </returns>
+        public static int indexOf<T>(ref T[] array, T obj, bool referenceEqualityOnly)
+        {
+            int r = -1;
+
+            if ((array != null) && (obj != null))
+            {
+                if (!referenceEqualityOnly)
+                {
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        if (array[i].Equals(obj) || object.ReferenceEquals(array[i], obj))
+                        {
+                            r = i;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < array.Length; i++)
+                    {
+                        if (object.ReferenceEquals(array[i], obj))
+                        {
+                            r = i;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return r;
+        }
+
+        /// <summary>
+        /// Allows testing the array to determine if it contains a specified object.
+        /// </summary>
+        /// <typeparam name="T">
+        /// A Type.  Requires you to specify the object type of the array.
+        /// </typeparam>
+        /// <param name="array">
+        /// An array variable reference.
+        /// </param>
+        /// <param name="obj">
+        /// An object variable instance to test into the array for element existence.
+        /// </param>
+        /// <param name="referenceEqualityOnly">
+        /// A boolean value.  If True, then contains will test only for reference equality.  If False, then contains will test for either reference or value equality.
+        /// </param>
+        /// <returns>
+        /// A boolean value indicating whether the specified object exists in the array.  True if the object exists in the array.  Otherwise False.
+        /// </returns>
+        public static bool contains<T>(ref T[] array, T obj, bool referenceEqualityOnly)
+        {
+            return (indexOf<T>(ref array, obj, referenceEqualityOnly) > -1);
+        }
+
+        
     }
 }

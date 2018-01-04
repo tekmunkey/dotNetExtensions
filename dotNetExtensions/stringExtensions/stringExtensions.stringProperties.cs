@@ -15,7 +15,7 @@ namespace dotNetExtensions
         /// <returns>
         /// The text encoding discovered in the specified byte array.
         /// </returns>
-        public static Encoding getEncoding(byte[] fromTextData)
+        public static Encoding getEncoding(ref byte[] fromTextData)
         {
             Encoding r = Encoding.Default;
 
@@ -77,41 +77,53 @@ namespace dotNetExtensions
         /// A byte array.  The data to scan for line terminations.
         /// </param>
         /// <returns>
-        /// A string value representing the line termination found.  Returns the default system lineterm if none is found.
+        /// A string value representing the line termination found.  Returns the default system lineterm (System.Environment.NewLine) if 
+        /// none is found.
         /// </returns>
-        public static string getLineTerm(byte[] fromTextData)
+        public static string getLineTerm(ref byte[] fromTextData)
         {
-            string r = null;
+            string r = System.Environment.NewLine;
 
             MemoryStream ms = new MemoryStream(fromTextData);
             StreamReader sr = new StreamReader(ms);
-            // sr.Peek() is required before CurrentEncoding can be known
-            sr.Peek();
 
-            string oneLine = sr.ReadLine();
-
-            if ((oneLine.Length >= 2) && (oneLine[oneLine.Length - 1] == 0x0a) && (oneLine[oneLine.Length - 2] == 0x0d))
+            do
             {
-                // if the last character on the line is LF and the char before that is CR, then this is a network/windows lineterm
-                r = new string(new char[] { (char)0x0d, (char)0x0a });
-            }
-            else if ((oneLine.Length >= 1) && (oneLine[oneLine.Length - 1] == 0x0a))
-            {
-                // if the last character on the line is LF and the char before that is not CR, then this is a Linux lineterm
-                r = new string((char)0x0a, 1);
-            }
-            else if ((oneLine.Length >= 1) && (oneLine[oneLine.Length - 1] == (char)0x0d))
-            {
-                // If the last character on the line is CR, then this is a Mac lineterm
-                r = new string((char)0x0d, 1);
-            }
-            else
-            {
-                // If no in-file newline is defined, default to system newline
-                r = System.Environment.NewLine;
-            }
-
-            oneLine = null;
+                char c = (char)sr.Read();
+                if (c.Equals((char)0x0d) && !sr.EndOfStream)
+                {
+                    // if current character is CR and not end of stream
+                    c = (char)sr.Read();
+                    if (c.Equals((char)0x0a))
+                    {
+                        // and the next character is LF
+                        r = new string(new char[] { (char)0x0d, (char)0x0a });
+                        // we're done here
+                        break;
+                    }
+                    else
+                    {
+                        // the next character is not LF
+                        r = new string(new char[] { (char)0x0d });
+                        // we're done here
+                        break;
+                    }
+                }
+                else if (c.Equals((char)0x0a))
+                {
+                    // if current character is LF
+                    r = new string(new char[] { (char)0x0a });
+                    // we're done here
+                    break;
+                }
+                else
+                {
+                    // if current character IS CR and also end of stream
+                    r = new string(new char[] { (char)0x0d });
+                    // we're done here but no need to break - it'll just make Visual Studio error/warn that the ending while 
+                    // line is 'unreachable code' for no good reason
+                }
+            } while (!sr.EndOfStream);
 
             sr.Close();
             sr.Dispose();
@@ -141,33 +153,44 @@ namespace dotNetExtensions
 
             FileStream fs = new FileStream(fromTextFile, FileMode.Open, FileAccess.Read, FileShare.Read | FileShare.Write);
             StreamReader sr = new StreamReader(fs);
-            // sr.Peek() is required before CurrentEncoding can be known
-            sr.Peek();
 
-            string oneLine = sr.ReadLine();
-
-            if ((oneLine.Length >= 2) && (oneLine[oneLine.Length - 1] == 0x0a) && (oneLine[oneLine.Length - 2] == 0x0d))
+            do
             {
-                // if the last character on the line is LF and the char before that is CR, then this is a network/windows lineterm
-                r = new string(new char[] { (char)0x0d, (char)0x0a });
-            }
-            else if ((oneLine.Length >= 1) && (oneLine[oneLine.Length - 1] == 0x0a))
-            {
-                // if the last character on the line is LF and the char before that is not CR, then this is a Linux lineterm
-                r = new string((char)0x0a, 1);
-            }
-            else if ((oneLine.Length >= 1) && (oneLine[oneLine.Length - 1] == (char)0x0d))
-            {
-                // If the last character on the line is CR, then this is a Mac lineterm
-                r = new string((char)0x0d, 1);
-            }
-            else
-            {
-                // If no in-file newline is defined, default to system newline
-                r = System.Environment.NewLine;
-            }
-
-            oneLine = null;
+                char c = (char)sr.Read();
+                if (c.Equals((char)0x0d) && !sr.EndOfStream)
+                {
+                    // if current character is CR and not end of stream
+                    c = (char)sr.Read();
+                    if (c.Equals((char)0x0a))
+                    {
+                        // and the next character is LF
+                        r = new string(new char[] { (char)0x0d, (char)0x0a });
+                        // we're done here
+                        break;
+                    }
+                    else
+                    {
+                        // the next character is not LF
+                        r = new string(new char[] { (char)0x0d });
+                        // we're done here
+                        break;
+                    }
+                }
+                else if (c.Equals((char)0x0a))
+                {
+                    // if current character is LF
+                    r = new string(new char[] { (char)0x0a });
+                    // we're done here
+                    break;
+                }
+                else
+                {
+                    // if current character IS CR and also end of stream
+                    r = new string(new char[] { (char)0x0d });
+                    // we're done here but no need to break - it'll just make Visual Studio error/warn that the ending while 
+                    // line is 'unreachable code' for no good reason
+                }
+            } while (!sr.EndOfStream);
 
             sr.Close();
             sr.Dispose();

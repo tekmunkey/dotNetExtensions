@@ -8,6 +8,16 @@
 
 * Added arrayExtensions.insertAt and arrayExtensions.removeAt
 
+* Added stringExtensions.stringProperties.cs with getEncoding and getLineTerm functions, which respectively take filepath or byte array parameters to determine text encoding or line terminators from original text.
+
 * Added stringExtensions.copyStringToString and copyStringToCharArray
 
 * Added stringExtensions.textTrim.cs file containing several functions (trimLeft, trimRight, trimBoth, with each function providing overloads that accept either a string-to-trim or a charArray-to-trim)
+
+# 2018-01-04
+
+* Added arrayExtensions.indexOf and arrayExtensions.contains functions
+
+* Added custom iniFileClass, iniSectionClass, iniKeyClass
+
+* 
