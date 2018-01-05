@@ -15,6 +15,12 @@ namespace dotNetExtensions
         /// Contains the INI Key Value, or its content which resides on the right side of the = in the INI file.
         /// </summary>
         public string keyValue = null;
+        /// <summary>
+        /// Contains the separator value that was found in the original content.  Some INI implementations may allow or recognize keys 
+        /// that contain spaces around the = char while others may not.  We would like to ensure that we don't break anything if users 
+        /// open and resave their INI files with our engine.
+        /// </summary>
+        public string sepValue = null;
 
         /// <summary>
         /// Converts the iniKeyClass instance's keyName and keyValue properties to a writable value in the form of 'keyName = keyValue'
@@ -27,7 +33,7 @@ namespace dotNetExtensions
             string r = string.Empty;
             if (!string.IsNullOrEmpty(this.keyName))
             {
-                r = this.keyName + @" = " + this.keyValue;
+                r = this.keyName + this.sepValue + this.keyValue;
             }
             return r;
         }
@@ -38,6 +44,7 @@ namespace dotNetExtensions
         public iniKeyClass()
         {
             this.keyName = string.Empty;
+            this.sepValue = string.Empty;
             this.keyValue = string.Empty;
         }
 
@@ -53,6 +60,7 @@ namespace dotNetExtensions
         public iniKeyClass(string newname, string newvalue)
         {
             this.keyName = newname;
+            this.sepValue = string.Empty;
             this.keyValue = newvalue;
         }
 
@@ -62,6 +70,7 @@ namespace dotNetExtensions
         ~iniKeyClass()
         {
             this.keyValue = null;
+            this.sepValue = null;
             this.keyName = null;
         }
 
@@ -94,10 +103,6 @@ namespace dotNetExtensions
                 string keyValue = string.Empty;
 
                 char keyNameSep = (char)0x3d; // the = character
-                char[] forbiddenKeyNameChars = new char[0];
-                arrayExtensions.push<char>(ref forbiddenKeyNameChars, (char)0x3b); // the ; (semicolon) char
-                arrayExtensions.push<char>(ref forbiddenKeyNameChars, (char)0x0d); // the CR char
-                arrayExtensions.push<char>(ref forbiddenKeyNameChars, (char)0x0a); // the LF char
 
                 char[] testChars = testString.ToCharArray();
                 // the valueStarted boolean will toggle the first time we encounter the = sign in the line
@@ -109,7 +114,7 @@ namespace dotNetExtensions
                         //
                         // Value has not yet started
                         //
-                        if (arrayExtensions.contains<char>(ref forbiddenKeyNameChars, testChars[i], false))
+                        if (arrayExtensions.contains<char>(ref iniFileClass.linetermChars, testChars[i], false) || arrayExtensions.contains<char>(ref iniFileClass.commentChars, testChars[i], false))
                         {
                             // Do not accept line terms or semicolons during key/property name retrieval
                             r = false;
@@ -155,7 +160,6 @@ namespace dotNetExtensions
                 // particular character
                 //
                 char keyNameSep = (char)0x3d; // the = character
-                char[] lineTermChars = new char[] { (char)0x0d, (char)0x0a }; // CR and LF line terminators
 
                 char[] testChars = fromString.ToCharArray();
                 // the valueStarted boolean will toggle the first time we encounter the = sign in the line
@@ -169,6 +173,23 @@ namespace dotNetExtensions
                         {
                             // if this is an = char then toggle valueStarted and we're done with the key name by the next pass
                             valueStarted = true;
+                            // set up the sepValue into the new instance
+                            if ((i > 0) && arrayExtensions.contains<char>(ref iniFileClass.whitespaceChars, testChars[i - 1], false))
+                            {
+                                // This if case tests first if the index is > 0 to ensure we don't underrun the array bounds
+                                // The andalso case tests if there is whitespace around the = sign - if so, then copy it along with the = sign
+                                r.sepValue = testChars[i - i] + @"=";
+                                // Additionally we must test if the string is long enough to contain additional chars, and if so whether there 
+                                // is more whitespace ahead of the = sign, and if so copy that in as well
+                                if (((i + 1) < testChars.Length) && arrayExtensions.contains<char>(ref iniFileClass.whitespaceChars, testChars[i + 1], false))
+                                {
+                                    r.sepValue += testChars[i + i];
+                                }
+                            }
+                            else
+                            {
+                                r.sepValue = @"=";
+                            }
                         }
                         else
                         {
@@ -178,7 +199,7 @@ namespace dotNetExtensions
                     }
                     else
                     {
-                        if (arrayExtensions.contains<char>(ref lineTermChars, testChars[i], false))
+                        if (arrayExtensions.contains<char>(ref iniFileClass.linetermChars, testChars[i], false))
                         {
                             // if we've encountered any type of line terminater, we're done with the value
                             break;

@@ -20,4 +20,4 @@
 
 * Added custom iniFileClass, iniSectionClass, iniKeyClass
 
-* 
+* Added and tested encodingExtensions.utf8 against System.Text.Encoding.UTF8 - works identically in encode and decode operations.

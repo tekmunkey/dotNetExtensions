@@ -137,10 +137,8 @@ namespace dotNetExtensions
                 // since every language/platform does things differently, this is a platform/syntax agnostic way of testing strings in a 
                 // regular expressions type manner
                 //
-                char wtSpace = (char)0x20; // whitespace char
                 char ltBrack = (char)0x5b; // the [ char
                 char rtBrack = (char)0x5d; // the ] char
-                char[] lineTermChars = new char[] { (char)0x0d, (char)0x0a }; // CR and LF line terminators
                 
                 char[] testChars = testString.ToCharArray();
                 // a boolean indicating whether the section head has started
@@ -154,7 +152,7 @@ namespace dotNetExtensions
                     if (!secHeadStarted)
                     {
                         // while the section heading has not yet started
-                        if (testChars[i] == wtSpace)
+                        if (arrayExtensions.contains<char>(ref iniFileClass.whitespaceChars, testChars[i], false))
                         {
                             // flatly ignore whitespace
                         }
@@ -184,7 +182,7 @@ namespace dotNetExtensions
                             //
                             r = (stringExtensions.trimBoth(secHeadName, new char[] { (char)0x20 }).Length > 0);
                         }
-                        else if (arrayExtensions.contains<char>(ref lineTermChars, testChars[i], false))
+                        else if (arrayExtensions.contains<char>(ref iniFileClass.linetermChars, testChars[i], false))
                         {
                             // if we encounter any lineterms between section heading brackets this represents an invalid section heading line
                             r = false;
@@ -199,11 +197,11 @@ namespace dotNetExtensions
                     else
                     {
                         // if the section heading has both started and exited
-                        if (testChars[i] == wtSpace)
+                        if (arrayExtensions.contains<char>(ref iniFileClass.whitespaceChars, testChars[i], false))
                         {
                             // flatly ignore whitespace
                         }
-                        else if (arrayExtensions.contains<char>(ref lineTermChars, testChars[i], false))
+                        else if (arrayExtensions.contains<char>(ref iniFileClass.linetermChars, testChars[i], false))
                         {
                             // flatly ignore line terms as long as we're dealing with nothing else in the string but lineterms and whitespace
                         }

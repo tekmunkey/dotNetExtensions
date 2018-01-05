@@ -204,5 +204,87 @@ namespace dotNetExtensions
 
             return r;
         }
+
+        /// <summary>
+        /// Scans a specified text file and returns the number of detected whole lines in that text file.  Line terminations are 
+        /// determined by an initializing call to getLineTerm().
+        /// </summary>
+        /// <param name="fromTextFile">
+        /// The file path to scan for a line count.
+        /// </param>
+        /// <returns>
+        /// An integer value.  The number of whole text lines detected in the file.  Typically 1 more than the number of line terminations (if 
+        /// there's any text following the last line termination detected).  Otherwise will be the same as the number of line terminations.
+        /// </returns>
+        public static long countLines(string fromTextFile)
+        {
+            long r = 0;
+
+            Encoding encoding = getEncoding(fromTextFile);
+            string lineTerm = getLineTerm(fromTextFile);
+            //
+            // Depending on character encoding, not every character is guaranteed to be the same data width.  ie:  UTF-8 characters may be 
+            // more than 8-bits (1 byte), UTF-16 characters may be more than 16-bits (2 bytes), etc.  The only guarantee we have is that 
+            // line terminators will appear if they exist.
+            //
+            byte[] ltData = encoding.GetBytes(lineTerm);
+            int readLen = ltData.Length;
+
+            FileStream fs = new FileStream(fromTextFile, FileMode.Open, FileAccess.Read, FileShare.Read | FileShare.Write);
+            fs.Position = 0;
+
+            //
+            // If fs.Length is not greater than 0, then there are 0 lines in the empty file so skip to cleanup and return
+            //
+            if (fs.Length > 0)
+            {
+                //
+                // File is greater length than 0 so go ahead and increment lines to 1 automatically (there is at least 1 line in the file 
+                // whether there are any line terminators or not)
+                //
+                r = 1;
+                //
+                // Test additionally if the file is long enough to contain line terminators
+                //
+                if (fs.Length > readLen)
+                {
+                    do
+                    {
+                        if ((fs.Position + readLen) > fs.Length)
+                        {
+                            // If at any point fs.Position + readLen would overrun fs.Length, any additional read operation would error and fail 
+                            // (an application-fatal exception would occur)
+                            readLen = (int)(fs.Length - fs.Position);
+                        }
+
+                        byte[] readBuf = new byte[readLen];
+
+                        
+
+                        fs.Read(readBuf, 0, readLen);
+                        if (readBuf.Length == ltData.Length)
+                        {
+
+                        }
+
+                        readBuf = null;
+                    } while (fs.Position < fs.Length);
+                }
+
+                
+            }
+
+            fs.Close();
+            fs.Dispose();
+            fs = null;
+
+            ltData = null;
+            lineTerm = null;
+            encoding = null;
+
+            GC.Collect();
+
+            return r;
+        }
     }
 }

@@ -39,50 +39,56 @@ namespace dotNetExtensions
         /// <summary>
         /// fileLineTerm contains the line terminator that was determined to have been in use in the last filepath successfully loaded by the loadFile function, or is defaulted to System.Environment.NewLine.
         /// </summary>
-        public string fileLineTerm = Environment.NewLine;
+        public string fileLineTerm = null;
 
         /// <summary>
         /// fileEncoding contains a file encoding that will be used when the file is written out to disk.  This is determined from the last file successfully loaded by the loadFile function, or is defaulted 
         /// to System.Text.Encoding.ASCII.
         /// </summary>
-        public Encoding fileEncoding = Encoding.ASCII;
+        public Encoding fileEncoding = null;
 
         /// <summary>
-        /// The iniData array contains all the data read from the INI File on disk, including commentation.  By doing this, we can read what the user wrote 
+        /// The iniLines array contains all the lines of text read from the INI File on disk, including commentation.  By doing this, we can read what the user wrote 
         /// as notes to themselves and work around it rather than overwriting it any time data is saved back to disk.
         /// </summary>
-        public byte[] iniData = null;
+        public string[] iniLines = null;
 
-        private static char[] commentChars = new char[] 
+        internal static char[] commentChars = new char[] 
         { 
             (char)0x3b, // the ; (semicolon) character is recognized as a comment character when it is the first character on a line
             (char)0x23, // the # (hash) character is recognized as a comment character when it is the first character on a line
         };
 
-        private static char[] linetermChars = new char[]
+        internal static char[] linetermChars = new char[]
         {
             (char)0x0a, // the LF (line feed) character
             (char)0x0d, // the CR (carriage return) character
         };
 
-        private static char[] whitespaceChars = new char[]
+        internal static char[] whitespaceChars = new char[]
         {
             (char)0x09, // the HT (horizontal tab) character - the standard tabstop
             (char)0x20, // the WS (whitespace) character - the literal single non-breaking space
         };
 
+        /// <summary>
+        /// Loads an INI file from the specified filepath.
+        /// </summary>
+        /// <param name="filepath">
+        /// A path to the INI file to load into memory.
+        /// </param>
         public void loadFile(string filepath)
         {
             // clean up any fileName or iniData that was previously in place
             this.fileName = null;
-            this.iniData = null;
+            this.iniLines = null;
             GC.Collect();
 
             // reading the raw INI file data into the iniFileClass data buffer, in whatever native file encoding is in place
             FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read, FileShare.Read | FileShare.Write);
             fs.Position = 0;
             // re-initialize iniData
-            this.iniData = new byte[fs.Length];
+            this.iniLines = new string[0];
             // a data cursor into iniData as we read through the file
             int datOffset = 0;
 
@@ -97,7 +103,7 @@ namespace dotNetExtensions
                     datlen = (int)(fs.Length - fs.Position);
                 }
                 // finally read the data into the buffer
-                fs.Read(this.iniData, datOffset, datlen);
+                
                 // and increment the data buffer cursor
                 datOffset += datlen;
             } while (fs.Position < fs.Length);
@@ -108,18 +114,28 @@ namespace dotNetExtensions
             GC.Collect();
 
             // obtain the data text encoding through stringExtensions
-            this.fileEncoding = stringExtensions.getEncoding(ref this.iniData);
+            this.fileEncoding = stringExtensions.getEncoding(filepath);
+            // obtain the data line termination through stringExtensions
+            this.fileLineTerm = stringExtensions.getLineTerm(filepath);
             // and store the filepath since there have been no errors in the operation
             this.fileName = filepath;
         }
 
+        /// <summary>
+        /// Constructor.  Initializes the iniFileClass with its default values.
+        /// </summary>
         public iniFileClass()
         {
+            this.fileLineTerm = Environment.NewLine;
+            this.fileEncoding = Encoding.ASCII;
         }
 
+        /// <summary>
+        /// Destructor.  Cleans up memory objects as the iniFileClass instance is de-initialized.
+        /// </summary>
         ~iniFileClass()
         {
-            this.iniData = null;
+            this.iniLines = null;
             this.fileEncoding = null;
             this.fileLineTerm = null;
             this.fileName = null;

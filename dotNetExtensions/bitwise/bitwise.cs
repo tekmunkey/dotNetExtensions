@@ -222,7 +222,7 @@ namespace dotNetExtensions
             //
             // Or if r is 4 (0000 0100) and inValue is 140 (1000 1100), then the parenthesed value returns 4 (0000 0100) because that's the common bit in the values.
             //
-            // See?  EZ-PZ.  Don't be a moron.
+            // See?  EZ-PZ.
             //
             return ((r & inValue) > 0);
         }

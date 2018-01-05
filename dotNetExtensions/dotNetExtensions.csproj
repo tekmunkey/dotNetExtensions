@@ -49,6 +49,9 @@
     <Compile Include="stringExtensions\stringExtensions.textTrim.cs" />
     <Compile Include="stringExtensions\stringExtensions.textWrap.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="encodingExtensions\encodingExtensions.utf8.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
