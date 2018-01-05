@@ -248,6 +248,66 @@ namespace dotNetExtensions
             return (indexOf<T>(ref array, obj, referenceEqualityOnly) > -1);
         }
 
-        
+        /// <summary>
+        /// Copies a range of elements from an Array starting at the specified source index and pastes them to another Array starting at the specified destination index.  
+        /// 
+        /// Guarantees that all changes are undone if the copy does not succeed completely.  
+        /// 
+        /// Ensures that the copy is performed in a Big Endian fashion, such that the copied items will be reversed only if the system is Little Endian.
+        /// </summary>
+        /// <param name="sourceArray">
+        /// The Array that contains the data to copy
+        /// </param>
+        /// <param name="sourceIndex">
+        /// A 32-bit integer that represents the index in the sourceArray at which copying begins.
+        /// </param>
+        /// <param name="destinationArray">
+        /// The Array that receives the data.
+        /// </param>
+        /// <param name="destinationIndex">
+        /// A 32-bit integer that represents the index in the destinationArray at which storing begins.
+        /// </param>
+        /// <param name="length">
+        /// A 32-bit integer that represents the number of elements to copy.
+        /// </param>
+        public static void constrainedCopyBE(Array sourceArray, int sourceIndex, Array destinationArray, int destinationIndex, int length)
+        {
+            Array.ConstrainedCopy(sourceArray, sourceIndex, destinationArray, destinationIndex, length);
+            if (System.BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(destinationArray, destinationIndex, length);
+            }
+        }
+
+        /// <summary>
+        /// Copies a range of elements from an Array starting at the specified source index and pastes them to another Array starting at the specified destination index.  
+        /// 
+        /// Guarantees that all changes are undone if the copy does not succeed completely.  
+        /// 
+        /// Ensures that the copy is performed in a Little Endian fashion, such that the copied items will be reversed only if the system is Big Endian.
+        /// </summary>
+        /// <param name="sourceArray">
+        /// The Array that contains the data to copy
+        /// </param>
+        /// <param name="sourceIndex">
+        /// A 32-bit integer that represents the index in the sourceArray at which copying begins.
+        /// </param>
+        /// <param name="destinationArray">
+        /// The Array that receives the data.
+        /// </param>
+        /// <param name="destinationIndex">
+        /// A 32-bit integer that represents the index in the destinationArray at which storing begins.
+        /// </param>
+        /// <param name="length">
+        /// A 32-bit integer that represents the number of elements to copy.
+        /// </param>
+        public static void constrainedCopyLE(Array sourceArray, int sourceIndex, Array destinationArray, int destinationIndex, int length)
+        {
+            Array.ConstrainedCopy(sourceArray, sourceIndex, destinationArray, destinationIndex, length);
+            if (!System.BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(destinationArray, destinationIndex, length);
+            }
+        }
     }
 }

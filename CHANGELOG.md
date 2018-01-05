@@ -21,3 +21,10 @@
 * Added custom iniFileClass, iniSectionClass, iniKeyClass
 
 * Added and tested encodingExtensions.utf8 against System.Text.Encoding.UTF8 - works identically in encode and decode operations.
+
+# 2018-01-05
+
+* Added arrayExtensions.constrainedCopyBE and constrainedCopyLE
+
+* Added and tested encodingExtensions.utf16 against System.Text.Encoding.Unicode and BigEndianUnicode - works one heck of a lot better.  My version automatically detects big vs little endian encodings in UTF-16 during decode operations, with or without a Byte Order Marker, whether that BOM is accurate or not.
+
