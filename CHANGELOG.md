@@ -28,3 +28,14 @@
 
 * Added and tested encodingExtensions.utf16 against System.Text.Encoding.Unicode and BigEndianUnicode - works one heck of a lot better.  My version automatically detects big vs little endian encodings in UTF-16 during decode operations, with or without a Byte Order Marker, whether that BOM is accurate or not.
 
+# 2018-01-008
+
+* Added bitwise.isLittleEndian and bitwise.isBigEndian functions to provide demonstrations of how to perform these functions in any programming language, given a platform-based facility to convert integer values to byte arrays.
+
+* Added bitwise.getBytes functions accepting all forms of integer (unsigned/signed 16/32/64 bit integers) and accepting a boolean value specifying whether the output bytes should be Big or Little Endian.  These functions construct the output byte array using only bitshift and logical operations rather than relying on the BitConverter, in order to produce Big and Little Endian output values in a truly platform agnostic way (providing Endian-specific output without knowing or caring about the Endianness of the platform itself).  These can be ported to literally any programming language on any platform to serve the same purpose.
+
+* Added arrayExtensions.compare<T> for unit testing and other purposes (an array compare function equivalent to Enumerable.SequenceEqual, which isn't available for DotNET 2.0)
+
+* Revived bitConverterExtensions in order to provide actual extensions to the BitConverter itself (using BitConverter calls and then adding functionality), since the previous thing called bitconverterExtensions was actually replacement coding in legitimate bitwise functionality.
+
+* In bitConverterExtensions, getBytes functions were added mirroring the functionality provided by bitwise.getBytes.  These are provided both to demonstrate how to do the same task in native DotNET and also to provide unit testing facilities for bitwise.getBytes (in order to test my custom bitwise.getBytes functions against the BitConverter itself, in the corrected Endiannesses).  Documentation for these functions is not yet complete.

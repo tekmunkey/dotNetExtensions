@@ -309,5 +309,44 @@ namespace dotNetExtensions
                 Array.Reverse(destinationArray, destinationIndex, length);
             }
         }
+
+        /// <summary>
+        /// Determines whether two arrays are equal by comparing the elements using the default equality comparer for the element type.
+        /// </summary>
+        /// <typeparam name="T">
+        /// A Type.  Requires you to specify the object type of the array.
+        /// </typeparam>
+        /// <param name="array0">
+        /// An array to compare against another.
+        /// </param>
+        /// <param name="array1">
+        /// An array to compare against another.
+        /// </param>
+        /// <returns>
+        /// A boolean value.  True if both arrays are of the same length and each element in both arrays is equal according to the default equality comparer for the element type.
+        /// </returns>
+        public static bool compare<T>(ref T[] array0, ref T[] array1)
+        {
+            bool r = object.ReferenceEquals(array0, array1);
+
+            if (!r && !object.ReferenceEquals(array0, null) && !object.ReferenceEquals(array1, null))
+            {
+                if (array0.Length == array1.Length)
+                {
+                    // set return value to true by default - this will change only if inequality is caught
+                    r = true;
+                    for (int i = 0; i < array0.Length; i++)
+                    {
+                        if (!array0[i].Equals(array1[i]))
+                        {
+                            r = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return r;
+        }
     }
 }

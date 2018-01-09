@@ -50,7 +50,9 @@
     <Compile Include="stringExtensions\stringExtensions.textWrap.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bitConverterExtensions\bitConverterExtensions.cs" />
     <Compile Include="encodingExtensions\encodingExtensions.utf16.cs" />
+    <Compile Include="encodingExtensions\encodingExtensions.utf32.cs" />
     <Compile Include="encodingExtensions\encodingExtensions.utf8.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

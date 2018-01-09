@@ -9,6 +9,120 @@ namespace dotNetExtensions
     public static partial class bitwise
     {
         /// <summary>
+        /// Gets a value indicating whether the current machine is Little Endian architecture.
+        /// </summary>
+        /// <returns>
+        /// A boolean value.  True if the system is Little Endian Architecture.  Otherwise False.
+        /// </returns>
+        public static bool isLittleEndian()
+        {
+            //
+            // Redundant, yep.  Hopefully educational.  Also portable.
+            //
+            // This function demonstrates how, by converting any numeric value to a byte array on any system (using whatever 
+            // means are available through a programming language or platform) you can determine whether the system is 
+            // Little Endian.
+            //
+            // In a Little Endian system, the Least Significant bits (or bytes) of a multi-byte figure will appear first in a 
+            // chain (at the lowest memory address).  I had a bit of trouble getting my head around this.  No clue why it's 
+            // Little Endian instead of Little Startian.  If printed on a page it would read left-to-right with the lowest 
+            // values first (big values last or at the end).
+            //
+            //   * According to WikiPedia, some doucher came up with this nonsense based on Gulliver's Travels.  Makes 
+            //     perfect sense, since it's bass-ackwards (Big and Little Endian nomenclature are literally given each 
+            //     others' names)
+            //
+            bool r = false;
+
+            //
+            // A hexadecimal notation like this means that we are explicitly setting the least significant bit and only the 
+            // least significant bit to 1.  Hexadecimal itself does not have an endianness.
+            //   * I have seen many examples where some retard tried to demonstrate endianness using hexadecimal notation.  
+            //     Please don't get your head addled by these morons.
+            //   * The following 3 values are all the same value and as long as what we're talking about are Big Endian 
+            //     versus Little Endian, it is ALWAYS the same 0x00000001 hexadecimal notation.
+            //   * The decimal value '1' is never 0x01000000 just because it's in Big Endian format.  That would always be 
+            //     16777216 (decimal) regardless of Endianness.
+            //
+            //   ie:  In 32-bit binary, the decimal value '1' in Little Endian format reads:
+            //        0001 0000 0000 0000 0000 0000 0000 0000
+            //   ie:  In 32-bit binary, the decimal value '1' in Big Endian format reads:
+            //        0000 0000 0000 0000 0000 0000 0000 0001
+            //   ie:  In 32-bit hexadecimal, the decimal value '1' always reads:
+            //        0x00000001
+            //
+            int testInt = 0x00000001;
+            //
+            // Using the System.BitConverter is simply DotNET's convention for turning an int into a byte array.
+            //
+            byte[] testBytes = BitConverter.GetBytes(testInt);
+            //
+            // If the system were in fact Little Endian, the value at array index 0 (the 1st byte because of 0-base indexing) 
+            // would be greater than 0, because it would be 1
+            //
+            r = (testBytes[0] > 0);
+
+            return r;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the current machine is Big Endian architecture.
+        /// </summary>
+        /// <returns>
+        /// A boolean value.  True if the system is Big Endian Architecture.  Otherwise False.
+        /// </returns>
+        public static bool isBigEndian()
+        {
+            //
+            // Redundant, yep.  Hopefully educational.  Also portable.
+            //
+            // This function demonstrates how, by converting any numeric value to a byte array on any system (using whatever 
+            // means are available through a programming language or platform) you can determine whether the system is 
+            // Big Endian.
+            //
+            // In a Big Endian system, the Least Significant bits (or bytes) of a multi-byte figure will appear last in a 
+            // chain (at the highest memory address).  I had a bit of trouble getting my head around this.  No clue why it's 
+            // Big Endian instead of Big Startian.  If printed on a page it would read left-to-right with the lowest 
+            // values last (big values first, little values at the end).
+            //
+            //   * According to WikiPedia, some doucher came up with this nonsense based on Gulliver's Travels.  Makes 
+            //     perfect sense, since it's bass-ackwards (Big and Little Endian nomenclature are literally given each 
+            //     others' names)
+            //
+            bool r = false;
+
+            //
+            // A hexadecimal notation like this means that we are explicitly setting the least significant bit and only the 
+            // least significant bit to 1.  Hexadecimal itself does not have an endianness.
+            //   * I have seen many examples where some retard tried to demonstrate endianness using hexadecimal notation.  
+            //     Please don't get your head addled by these morons.
+            //   * The following 3 values are all the same value and as long as what we're talking about are Big Endian 
+            //     versus Little Endian, it is ALWAYS the same 0x00000001 hexadecimal notation.
+            //   * The decimal value '1' is never 0x01000000 just because it's in Big Endian format.  That would always be 
+            //     16777216 (decimal) regardless of Endianness.
+            //
+            //   ie:  In 32-bit binary, the decimal value '1' in Little Endian format reads:
+            //        0001 0000 0000 0000 0000 0000 0000 0000
+            //   ie:  In 32-bit binary, the decimal value '1' in Big Endian format reads:
+            //        0000 0000 0000 0000 0000 0000 0000 0001
+            //   ie:  In 32-bit hexadecimal, the decimal value '1' always reads:
+            //        0x00000001
+            //
+            int testInt = 0x00000001;
+            //
+            // Using the System.BitConverter is simply DotNET's convention for turning an int into a byte array.
+            //
+            byte[] testBytes = BitConverter.GetBytes(testInt);
+            //
+            // If the system were in fact Big Endian, the value at array index 3 (the 4th byte because of 0-base indexing) 
+            // would be greater than 0, because it would be 1
+            //
+            r = (testBytes[3] > 0);
+
+            return r;
+        }
+
+        /// <summary>
         /// Sets the specified bit into the specified unsigned 8-bit value.
         /// </summary>
         /// <param name="inValue">
@@ -227,25 +341,6 @@ namespace dotNetExtensions
             return ((r & inValue) > 0);
         }
 
-        public static sbyte setBit(sbyte inValue, int bitIndex)
-        {
-            sbyte r = 0;
-            
-            return r;
-        }
-
-        public static sbyte toggleBit(sbyte inValue, int bitIndex)
-        {
-            sbyte r = 0;
-
-            return r;
-        }
-
-        public static bool getBit(sbyte inValue, int bitIndex)
-        {
-            bool r = false;
-
-            return r;
-        }
+        
     }
 }
