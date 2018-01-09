@@ -323,7 +323,11 @@ namespace dotNetExtensions
         /// An array to compare against another.
         /// </param>
         /// <returns>
-        /// A boolean value.  True if both arrays are of the same length and each element in both arrays is equal according to the default equality comparer for the element type.
+        /// A boolean value.  True if both arrays are of the same length and each element in both arrays is equal according to the default equality comparer for the element type.  
+        /// 
+        /// If both array parameters are to the same reference, including if both arrays are null, the function returns True.  
+        /// 
+        /// Otherwise, if either array is null, no exception is thrown but the function simply returns False.
         /// </returns>
         public static bool compare<T>(ref T[] array0, ref T[] array1)
         {
@@ -338,6 +342,60 @@ namespace dotNetExtensions
                     for (int i = 0; i < array0.Length; i++)
                     {
                         if (!array0[i].Equals(array1[i]))
+                        {
+                            r = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return r;
+        }
+
+        /// <summary>
+        /// Determines whether a specified range of elements in two arrays are equal by comparing the elements in the range using the default equality comparer for the element type.
+        /// </summary>
+        /// <typeparam name="T">
+        /// A Type.  Requires you to specify the object type of the array.
+        /// </typeparam>
+        /// <param name="array0">
+        /// An array to compare against another.
+        /// </param>
+        /// <param name="startOffset0">
+        /// An integer.  The index into array0 where comparison should begin.
+        /// </param>
+        /// <param name="array1">
+        /// An array to compare against another.
+        /// </param>
+        /// <param name="startOffset1">
+        /// An integer.  The index into array1 where comparison should begin.
+        /// </param>
+        /// <param name="length">
+        /// An integer.  The number of elements, in both arrays, to compare.
+        /// </param>
+        /// <returns>
+        /// A boolean value.  True if both arrays are of a length that can contain the specified startOffsets and length, and each element in both arrays is equal according to the default equality comparer for the element type.  Otherwise False.  
+        /// 
+        /// If both array parameters are to the same reference, including if both arrays are null, the function returns True.  
+        /// 
+        /// Otherwise, if either array is null, no exception is thrown but the function simply returns False.  
+        /// 
+        /// No exceptions are thrown if either startOffset is outside the bounds of its respective array, or if length would overrun the bounds of either array.  The function simply returns False.
+        /// </returns>
+        public static bool compare<T>(ref T[] array0, int startOffset0, ref T[] array1, int startOffset1, int length)
+        {
+            bool r = object.ReferenceEquals(array0, array1);
+
+            if (!r && !object.ReferenceEquals(array0, null) && !object.ReferenceEquals(array1, null))
+            {
+                if ((array0.Length >= (startOffset0 + length)) && (array1.Length >= (startOffset1 + length)))
+                {
+                    // set return value to true by default - this will change only if inequality is caught
+                    r = true;
+                    for (int i = 0; i < length; i++)
+                    {
+                        if (!array0[startOffset0 + i].Equals(array1[startOffset1 + i]))
                         {
                             r = false;
                             break;

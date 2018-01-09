@@ -5,7 +5,7 @@ namespace dotNetExtensions
     public static partial class bitwise
     {
         /// <summary>
-        /// Converts the specified unsigned 16-bit integer value to a byte array in the specified Endian format, regardless of the current system architecture.
+        /// Converts the specified unsigned 16-bit integer value to a byte array in the specified Endian format, regardless of the current system architecture.  
         /// </summary>
         /// <param name="value">
         /// An unsigned 16-bit value.

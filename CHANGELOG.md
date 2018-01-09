@@ -28,7 +28,7 @@
 
 * Added and tested encodingExtensions.utf16 against System.Text.Encoding.Unicode and BigEndianUnicode - works one heck of a lot better.  My version automatically detects big vs little endian encodings in UTF-16 during decode operations, with or without a Byte Order Marker, whether that BOM is accurate or not.
 
-# 2018-01-008
+# 2018-01-08
 
 * Added bitwise.isLittleEndian and bitwise.isBigEndian functions to provide demonstrations of how to perform these functions in any programming language, given a platform-based facility to convert integer values to byte arrays.
 
@@ -39,3 +39,22 @@
 * Revived bitConverterExtensions in order to provide actual extensions to the BitConverter itself (using BitConverter calls and then adding functionality), since the previous thing called bitconverterExtensions was actually replacement coding in legitimate bitwise functionality.
 
 * In bitConverterExtensions, getBytes functions were added mirroring the functionality provided by bitwise.getBytes.  These are provided both to demonstrate how to do the same task in native DotNET and also to provide unit testing facilities for bitwise.getBytes (in order to test my custom bitwise.getBytes functions against the BitConverter itself, in the corrected Endiannesses).  Documentation for these functions is not yet complete.
+
+# 2018-01-09
+
+* Flushed out documentation for bitConverterExtensions
+
+* Added arrayExtensions.compare overload to compare a range of elements in 2 arrays of arbitrary lengths.
+
+* Added invalidUTF8CodePointHandler delegate, invalidUTF8CodePointEvent, and raiseinvalidUTF8CodePointEvent method providing consumers an even smoother error-correction facility when using this decoding implementation.
+
+* Added getDecodeDataWidth, getDecodeCharCount, and getDecodeChar to encodingExtensions.utf8
+
+* Converted utf8.decodeData to use the new modularized architecture.
+
+* Added getEncodeDataWidth, getEncodeByteCount, and getEncodeData to encodingExtensions.utf8
+
+* Converted utf8.encodeData to use the new modularized architecture.
+
+* Still haven't provided any CODEC facility for file-on-disk or data streams.
+
